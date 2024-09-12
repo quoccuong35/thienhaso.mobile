@@ -1,0 +1,9 @@
+{
+    "taiKhoan": "Tên đăng nhập",
+    "matKhau": "Mật khẩu",
+    "dangNhap": "Đăng nhập",
+    "quenMatKhau":"Quên mật khẩu?",
+    "lgTieuDe1":"Chào mừng trở lại, ",
+    "lgTieuDe2":"thật vui khi gặp lại bạn",
+    "required":"Vui lòng nhập thông tin '{name}'"
+  }
