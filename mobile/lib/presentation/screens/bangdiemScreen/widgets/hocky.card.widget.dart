@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
-import 'package:mobile/core/models/bangdiemhocky.dart';
+import 'package:mobile/core/models/objresult.dart';
+import 'package:mobile/core/models/subjectmarkofsemester.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
-Widget HocKyCard(BangDiemHocKy item) {
+Widget hocKyCard(SubjectMarkOfSemester item) {
   return Container(
     decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 15.0,
             color: AppColors.blackShadow,
-            offset: const Offset(
+            offset: Offset(
               0.0,
               15.0,
             ),
@@ -22,89 +23,74 @@ Widget HocKyCard(BangDiemHocKy item) {
         ]),
     child: ListTile(
       title: (Text(
-        item.hocky,
+        "Học kỳ ${item.semester}-${item.yearID}",
         style: CustomTextWidget.bodyTextS14Cblue(),
       )),
-      subtitle: Column(
-        children: [
-          vSizedBox1,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RichText(
-                  text: TextSpan(
-                      text: "TBC hệ 10: ",
-                      style: CustomTextWidget.bodyTextS14W6(),
-                      children: <TextSpan>[
-                    TextSpan(
-                        text: item.tbche10,
-                        style: CustomTextWidget.bodyTextS14Cblue())
-                  ])),
-              RichText(
-                  text: TextSpan(
-                      text: "TBC hệ 4: ",
-                      style: CustomTextWidget.bodyTextS14W6(),
-                      children: <TextSpan>[
-                    TextSpan(
-                        text: item.tbche4,
-                        style: CustomTextWidget.bodyTextS14Cblue())
-                  ]))
-            ],
-          ),
-          vSizedBox1,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RichText(
-                  text: TextSpan(
-                      text: "Xếp loại học tập: ",
-                      style: CustomTextWidget.bodyTextS14W6(),
-                      children: <TextSpan>[
-                    TextSpan(
-                        text: item.xeploaihoctap,
-                        style: CustomTextWidget.bodyTextS14CGreen())
-                  ])),
-              RichText(
-                  text: TextSpan(
-                      text: "Xếp loại hạnh kiểm: ",
-                      style: CustomTextWidget.bodyTextS14W6(),
-                      children: <TextSpan>[
-                    TextSpan(
-                        text: item.xeploaihanhkiem,
-                        style: CustomTextWidget.bodyTextS14CGreen())
-                  ]))
-            ],
-          ),
-          vSizedBox1,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RichText(
-                  text: TextSpan(
-                      text: "Điểm rèn luyện: ",
-                      style: CustomTextWidget.bodyTextS14W6(),
-                      children: <TextSpan>[
-                    TextSpan(
-                        text: item.diemrenluyen,
-                        style: CustomTextWidget.bodyTextS14Cblue())
-                  ])),
-              RichText(
-                  text: TextSpan(
-                      text: "Cảnh báo học lực: ",
-                      style: CustomTextWidget.bodyTextS14W6(),
-                      children: <TextSpan>[
-                    TextSpan(
-                        text: item.canhbaohocluc,
-                        style: item.canhbaohocluc.toLowerCase() == 'có'
-                            ? CustomTextWidget.bodyTextS14W6red()
-                            : CustomTextWidget.bodyTextS14W6())
-                  ]))
-            ],
-          ),
-          vSizedBox1,
-          dividerH2B,
-        ],
-      ),
+      subtitle: Column(children: getItem(items: item.fields)),
     ),
   );
+}
+
+List<Widget> getItem({required List<ObjResult> items}) {
+  List<Widget> lists = [];
+  int length = items.length ~/ 2;
+  int phanDu = items.length % 2;
+  int index = 0;
+  if (length > 0) {
+    for (int i = 0; i < length; i++) {
+      lists.add(vSizedBox1);
+      lists.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RichText(
+              text: TextSpan(
+                  text: "${items[index].fieldCaption}: ",
+                  style:
+                      CustomTextWidget.captionStyle(items[index].captionStyle),
+                  children: <TextSpan>[
+                TextSpan(
+                  text: items[index].fieldValue,
+                  style: CustomTextWidget.valueStyle(items[index].valueStyle),
+                )
+              ])),
+          RichText(
+            text: TextSpan(
+              text: "${items[index + 1].fieldCaption}: ",
+              style:
+                  CustomTextWidget.captionStyle(items[index + 1].captionStyle),
+              children: <TextSpan>[
+                TextSpan(
+                  text: items[index + 1].fieldValue,
+                  style:
+                      CustomTextWidget.valueStyle(items[index + 1].valueStyle),
+                )
+              ],
+            ),
+          ),
+        ],
+      ));
+      index = index + 2;
+    }
+  }
+
+  if (phanDu == 1) {
+    lists.add(vSizedBox1);
+    lists.add(Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        RichText(
+            text: TextSpan(
+                text: items.last.fieldCaption,
+                style: CustomTextWidget.bodyTextS14(),
+                children: <TextSpan>[
+              TextSpan(
+                  text: items.last.fieldValue,
+                  style: CustomTextWidget.bodyTextS14W6())
+            ])),
+      ],
+    ));
+  }
+  lists.add(vSizedBox1);
+  lists.add(dividerH2B);
+  return lists;
 }

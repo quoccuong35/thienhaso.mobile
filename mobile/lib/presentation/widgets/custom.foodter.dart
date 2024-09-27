@@ -3,6 +3,7 @@ import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
+// ignore: non_constant_identifier_names
 Widget CustomFootder() {
   return Container(
     height: 55.0,

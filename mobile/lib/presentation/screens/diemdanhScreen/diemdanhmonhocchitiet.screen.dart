@@ -15,7 +15,7 @@ class DiemDanhMonHocChiTietScreen extends StatelessWidget {
         child: Scaffold(
           appBar: CustomAppbar(diemdanh.tenlophocphan, context),
           body: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +24,7 @@ class DiemDanhMonHocChiTietScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Lớp học phần"),
+                    const Text("Lớp học phần"),
                     Text(
                       diemdanh.malophocphan,
                       style: CustomTextWidget.bodyTextS14B(),

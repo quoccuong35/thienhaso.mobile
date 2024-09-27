@@ -1,11 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:mobile/core/models/data/datas.dart';
-import 'package:mobile/core/models/sinhvien.dart';
-import 'package:mobile/core/notifiers/sinhvien.notifier.dart';
+import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:provider/provider.dart';
 import '../../app/constants/app.keys.dart';
 import '../../app/routers/app.routes.dart';
@@ -26,11 +23,17 @@ class AuthenticationNotifier with ChangeNotifier {
   bool _obscureText = true;
   bool get obscureText => _obscureText;
 
-  bool _autoLogin = false;
+  final bool _autoLogin = false;
   bool get autoLogin => _autoLogin;
+  bool erroAuthen = false;
 
   void changeObscureText() {
     _obscureText = !_obscureText;
+    notifyListeners();
+  }
+
+  void toggleerroAuthen() {
+    erroAuthen = true;
     notifyListeners();
   }
 
@@ -54,81 +57,82 @@ class AuthenticationNotifier with ChangeNotifier {
     }
   }
 
-  Future createAccount(
-      {required String useremail,
+  Future userLogin(
+      {required String usrename,
       required BuildContext context,
-      required String username,
       required String userpassword}) async {
     try {
-      var userData = await _authenticationAPI.createAccount(
-          useremail: useremail, username: username, userpassword: userpassword);
-      print(userData);
+      String token = "";
+      await ReadCache.getString(key: AppKeys.token).then((value) {
+        if (value != null) token = value;
+      });
 
-      final Map<String, dynamic> parseData = await jsonDecode(userData);
-      bool isAuthenticated = parseData['authentication'];
-      dynamic authData = parseData['data'];
-
-      if (isAuthenticated) {
-        WriteCache.setString(key: AppKeys.userData, value: authData)
-            .whenComplete(
-          () => Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackUtil.stylishSnackBar(text: authData, context: context));
+      if (token == "") {
+        String? tonkenNew = await _authenticationAPI.authenticate();
+        if (tonkenNew == null) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
+              text: 'Lỗi không kết nói được server vui lòng liên hệ quản trị',
+              context: context));
+          return;
+        } else
+          // ignore: curly_braces_in_flow_control_structures
+          token = tonkenNew;
+      }
+      if (token != "") {
+        var data = await _authenticationAPI.userLogin(
+            usrename: usrename, userpassword: userpassword, token: token);
+        if (data['responseCode'] == 0) {
+          var id = data['body']['studentID'];
+          // ignore: unused_local_variable
+          var username = data['body']['username'];
+          StudentNotifier sv =
+              Provider.of<StudentNotifier>(context, listen: false);
+          var result = await sv.getInfo(
+              studentID: id,
+              username: username,
+              token: token,
+              context: context);
+          if (result) {
+            await WriteCache.setInt(key: AppKeys.studentID, value: id)
+                .whenComplete(() {
+              WriteCache.setString(key: AppKeys.username, value: username)
+                  .whenComplete(() {
+                WriteCache.setString(key: AppKeys.token, value: token)
+                    .whenComplete(
+                  () => Navigator.of(context)
+                      .pushReplacementNamed(AppRouter.homeRoute),
+                );
+              });
+            });
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
+              text: data['responseDesc'], context: context));
+        }
       }
     } on SocketException catch (_) {
       ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
           text: 'Oops No You Need A Good Internet Connection',
           context: context));
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
 
-  Future userLogin(
-      {required String usrename,
-      required BuildContext context,
-      required String userpassword}) async {
+  Future authenticate(
+    BuildContext context,
+  ) async {
     try {
-      if (AppKeys.noApi) {
-        var user = Datas.item.firstWhere((o) => o.masv == usrename,
-            orElse: () => SinhVien.enty());
-
-        if (user.masv != '') {
-          WriteCache.setString(key: AppKeys.userData, value: user.masv)
-              .whenComplete(() {
-            Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute);
-            SinhVienNotifier sv =
-                Provider.of<SinhVienNotifier>(context, listen: false);
-            sv.setSinhVien();
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
-              text: "Tài khoản hoặc mật khẩu không đúng", context: context));
-        }
-        // Future.delayed(const Duration(seconds: 2), () {
-
-        //   // deleayed code here
-        // });
+      String? tonken = await _authenticationAPI.authenticate();
+      if (tonken == null) {
+        toggleerroAuthen();
+      } else {
+        WriteCache.setString(key: AppKeys.token, value: tonken).whenComplete(
+          () =>
+              Navigator.of(context).pushReplacementNamed(AppRouter.loginRoute),
+        );
       }
-
-      // var userData = await _authenticationAPI.userLogin(
-      //     usrename: usrename, userpassword: userpassword);
-      // print(userData);
-      // final Map<String, dynamic> parseData = await jsonDecode(userData);
-      // bool isAuthenticated = parseData['authentication'];
-      // dynamic authData = parseData['data'];
-
-      // if (isAuthenticated) {
-      //   WriteCache.setString(key: AppKeys.userData, value: authData)
-      //       .whenComplete(
-      //     () => Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute),
-      //   );
-      // } else {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //       SnackUtil.stylishSnackBar(text: authData, context: context));
-      // }
     } on SocketException catch (_) {
       ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
           text: 'Oops No You Need A Good Internet Connection',

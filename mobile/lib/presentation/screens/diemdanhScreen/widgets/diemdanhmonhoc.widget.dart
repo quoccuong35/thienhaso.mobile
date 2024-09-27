@@ -5,28 +5,17 @@ import 'package:mobile/presentation/screens/diemdanhScreen/diemdanhmonhocchitiet
 
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 
+// ignore: non_constant_identifier_names
 Widget DiemDanhMonHocWidget(
     {required DiemDanhMonHoc item, required BuildContext context}) {
-  return Container(
-    margin: EdgeInsets.only(right: 10, bottom: 10),
-    decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 15,
-            color: AppColors.blackShadow,
-            offset: Offset(
-              0,
-              15,
-            ),
-            spreadRadius: 13,
-          ),
-        ]),
+  return Card(
+    elevation: 8,
+    margin: const EdgeInsets.all(5.0),
     child: ListTile(
-      trailing: const Icon(
+      trailing: Icon(
         Icons.arrow_circle_right_outlined,
         size: 25.0,
+        color: AppColors.primary,
       ),
       onTap: () {
         Navigator.push(
@@ -48,14 +37,15 @@ Widget DiemDanhMonHocWidget(
             style: CustomTextWidget.bodyTextS14B(),
           ),
           RichText(
+              overflow: TextOverflow.clip,
               text: TextSpan(
                   text: "GV: ",
-                  style: CustomTextWidget.bodyTextS14W6(),
+                  style: CustomTextWidget.bodyTextS14(),
                   children: <TextSpan>[
-                TextSpan(
-                    text: item.giaovien,
-                    style: CustomTextWidget.bodyTextS14W6())
-              ])),
+                    TextSpan(
+                        text: item.giaovien,
+                        style: CustomTextWidget.bodyTextS14())
+                  ])),
         ],
       ),
       subtitle: Row(
@@ -64,7 +54,7 @@ Widget DiemDanhMonHocWidget(
           RichText(
               text: TextSpan(
                   text: "Số giờ: ",
-                  style: CustomTextWidget.bodyTextS14W6(),
+                  style: const TextStyle(color: Colors.black),
                   children: <TextSpan>[
                 TextSpan(
                     text: item.sogio,
@@ -73,7 +63,7 @@ Widget DiemDanhMonHocWidget(
           RichText(
               text: TextSpan(
                   text: "Tín chỉ: ",
-                  style: CustomTextWidget.bodyTextS14W6(),
+                  style: const TextStyle(color: Colors.black),
                   children: <TextSpan>[
                 TextSpan(
                     text: item.tc, style: CustomTextWidget.bodyTextS14Cblue())

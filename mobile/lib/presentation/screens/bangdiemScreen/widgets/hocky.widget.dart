@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/core/models/bangdiemhocky.dart';
+import 'package:mobile/core/models/subjectmarkofsemester.dart';
 import 'package:mobile/core/notifiers/bangdiem.notifier.dart';
 import 'package:mobile/presentation/screens/bangdiemScreen/widgets/hocky.card.widget.dart';
 import 'package:mobile/presentation/widgets/khongcodulieu.widget.dart';
@@ -13,19 +13,19 @@ class HocKy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BangDiemNotifier>(builder: (context, bangdiem, _) {
       return FutureBuilder(
-          future: bangdiem.bangHocKy(context: context),
+          future: bangdiem.getSubjectMarkOfSemester(context: context),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CustomLoading.Loading(context: context);
             } else if (!snapshot.hasData) {
               return CustomDataEntyWidget.KhongCoDuLieu();
             } else {
-              var data = snapshot.data as List<BangDiemHocKy>;
+              var data = snapshot.data as List<SubjectMarkOfSemester>;
               return ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     final item = data[index];
-                    return HocKyCard(item);
+                    return hocKyCard(item);
                   });
             }
           });

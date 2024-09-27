@@ -18,7 +18,7 @@ final lightTheme = ThemeData(
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: AppColors.mirage,
       brightness: Brightness.light,
-      background: AppColors.creamColor,
+      surface: AppColors.creamColor,
     ),
     indicatorColor: AppColors.rawSienna,
     dividerColor: Colors.black,

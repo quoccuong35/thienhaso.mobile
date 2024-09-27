@@ -18,7 +18,7 @@ class LangNotifiers with ChangeNotifier {
 
   _loadLang() async {
     var languageCode = await getLang();
-    Locale lang = Locale('vi');
+    Locale lang = const Locale('vi');
 
     if (languageCode != null) {
       lang = Locale(languageCode);

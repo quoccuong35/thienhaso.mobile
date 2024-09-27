@@ -3,6 +3,7 @@ import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
+// ignore: non_constant_identifier_names
 Widget TextQuenMatKhau({required bool themeFlag}) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(35.0, 10.0, 35.0, 2.0),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
-
-import 'package:mobile/core/models/sinhvien.dart';
-import 'package:mobile/core/notifiers/sinhvien.notifier.dart';
+import 'package:mobile/core/notifiers/student.notifer.dart';
 
 import 'package:mobile/presentation/screens/bangdiemScreen/widgets/chitiet.widget.dart';
 import 'package:mobile/presentation/screens/bangdiemScreen/widgets/hocky.widget.dart';
@@ -10,8 +8,6 @@ import 'package:mobile/presentation/screens/bangdiemScreen/widgets/toankhoa.widg
 import 'package:mobile/presentation/widgets/custom.appbar.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
-import 'package:mobile/presentation/widgets/khongcodulieu.widget.dart';
-import 'package:mobile/presentation/widgets/loading.widget.dart';
 import 'package:provider/provider.dart';
 
 class BangDiemScreen extends StatelessWidget {
@@ -23,6 +19,7 @@ class BangDiemScreen extends StatelessWidget {
     // ThemeNotifier _themeNotifier = Provider.of<ThemeNotifier>(context);
 
     // var themeFlag = _themeNotifier.darkTheme;
+    StudentNotifier sv = Provider.of<StudentNotifier>(context);
     return SafeArea(
         top: false,
         child: Scaffold(
@@ -78,29 +75,15 @@ class BangDiemScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Consumer<SinhVienNotifier>(builder: (context, sinhvien, _) {
-                    return FutureBuilder(
-                        future: sinhvien.SinhienInfor(context: context),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return CustomLoading.Loading(context: context);
-                          } else if (!snapshot.hasData) {
-                            return CustomDataEntyWidget.KhongCoDuLieu();
-                          } else {
-                            var sv = snapshot.data as SinhVien;
-                            return ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor: AppColors.primary,
-                                backgroundImage: AssetImage(sv.urlimg),
-                              ),
-                              title: Text(sv.hoten,
-                                  style: CustomTextWidget.bodyTextS16W9()),
-                              subtitle: Text(sv.masv),
-                            );
-                          }
-                        });
-                  }),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: AppColors.primary,
+                      backgroundImage: AssetImage(sv.student.urlImge),
+                    ),
+                    title: Text(sv.student.fullName!,
+                        style: CustomTextWidget.bodyTextS16W9()),
+                    subtitle: Text(sv.student.studentCode!),
+                  ),
                   dividerH2B,
                   const Expanded(
                     child: TabBarView(

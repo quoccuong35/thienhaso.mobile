@@ -10,7 +10,7 @@ import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  ForgotPasswordScreen({Key? key}) : super(key: key);
+  ForgotPasswordScreen({super.key});
   final TextEditingController controllerMaSV = TextEditingController();
   final TextEditingController controllerHoVaTen = TextEditingController();
   final TextEditingController controllerLop = TextEditingController();
@@ -18,9 +18,9 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeNotifier _themeNotifier = Provider.of<ThemeNotifier>(context);
-    var themeFlag = _themeNotifier.darkTheme;
-    _guiYeuCau() {
+    ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
+    var themeFlag = themeNotifier.darkTheme;
+    guiYeuCau() {
       if (_formKey.currentState!.validate()) {
         ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
             text:
@@ -98,7 +98,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       onPressed: () {
-                        _guiYeuCau();
+                        guiYeuCau();
                       },
                       color: AppColors.primary,
                       child: const Text(

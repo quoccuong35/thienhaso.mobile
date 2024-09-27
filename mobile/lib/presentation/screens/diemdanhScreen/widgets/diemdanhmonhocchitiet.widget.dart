@@ -4,6 +4,7 @@ import 'package:mobile/core/models/diemdanhmonhoc.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
+// ignore: non_constant_identifier_names
 Widget DiemDanhMonHocChiTietWidget({required DiemDanhChiTiet item}) {
   return Container(
     decoration: BoxDecoration(

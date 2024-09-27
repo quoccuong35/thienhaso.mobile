@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/app/constants/app.keys.dart';
 
 class CustomLoading {
@@ -36,7 +37,9 @@ class CustomLoading {
                 ],
               ),
             ),
-            const CircularProgressIndicator(),
+            CircularProgressIndicator(
+              color: AppColors.white,
+            ),
             const Padding(
               padding: EdgeInsets.only(top: 16, bottom: 32),
               child: Text(

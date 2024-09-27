@@ -5,9 +5,9 @@ import '../../app/constants/app.colors.dart';
 class CustomBackButton extends StatelessWidget {
   final String route;
   const CustomBackButton({
-    Key? key,
+    super.key,
     required this.route,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -23,8 +23,8 @@ class CustomBackButton extends StatelessWidget {
 
 class CustomBackPop extends StatelessWidget {
   const CustomBackPop({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return IconButton(

@@ -1,6 +1,11 @@
+import 'package:cache_manager/core/delete_cache_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
+import 'package:mobile/app/constants/app.fonts.dart';
+import 'package:mobile/app/constants/app.keys.dart';
+import 'package:mobile/app/routers/app.routes.dart';
 import 'package:mobile/core/notifiers/lang.notifiers.dart';
+import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
@@ -80,6 +85,71 @@ void showNgonNgu({required LangNotifiers lang, required BuildContext context}) {
           ),
         ),
         actions: <Widget>[
+          MaterialButton(
+            color: Colors.red[900],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              'Thoát',
+              style: TextStyle(color: AppColors.white),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void logout({required BuildContext context, required StudentNotifier sv}) {
+  showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Center(
+          child: Icon(
+            Icons.logout_sharp,
+            color: AppColors.primary,
+            size: 36.0,
+          ),
+        ),
+        content: const SizedBox(
+          height: 100.0,
+          child: Center(
+            child: Text(
+              "Bạn có muốn đăng xuất khỏi hệ thống",
+              style: TextStyle(fontSize: 16.0),
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          MaterialButton(
+            color: AppColors.primary.withOpacity(0.8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Text('Đăng Xuất',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: AppFonts.fontSize14,
+                  fontWeight: FontWeight.w600,
+                )),
+            onPressed: () {
+              DeleteCache.deleteKey(AppKeys.userData).whenComplete(() {
+                // ignore: use_build_context_synchronously
+                sv.setEmtySV();
+                DeleteCache.deleteKey(AppKeys.token);
+                DeleteCache.deleteKey(AppKeys.username);
+                DeleteCache.deleteKey(AppKeys.studentID);
+                // ignore: use_build_context_synchronously
+                Navigator.of(context)
+                    .pushReplacementNamed(AppRouter.loginRoute);
+              });
+            },
+          ),
           MaterialButton(
             color: Colors.red[900],
             shape: RoundedRectangleBorder(

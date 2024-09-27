@@ -89,7 +89,7 @@ class AppRouter {
         {
           return MaterialPageRoute(
             fullscreenDialog: false,
-            builder: (_) => ThoiKhoaBieuScreen(),
+            builder: (_) => const ThoiKhoaBieuScreen(),
           );
         }
     }

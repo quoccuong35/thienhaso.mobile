@@ -40,8 +40,8 @@ class LoginScreen extends StatelessWidget {
     ThemeNotifier _themeNotifier = Provider.of<ThemeNotifier>(context);
 
     var themeFlag = _themeNotifier.darkTheme;
-    return WillPopScope(
-        onWillPop: () async => false,
+    return PopScope(
+        canPop: false,
         child: SafeArea(
             top: false,
             child: Consumer<LangNotifiers>(builder: (context, lang, _) {
@@ -68,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             InkWell(
-                              child: Image.new(
+                              child: Image(
                                   width: 100,
                                   height: 30,
                                   image:

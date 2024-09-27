@@ -16,13 +16,13 @@ textCell() {
       fontFamily: AppFonts.lato, fontSize: 12, overflow: TextOverflow.clip);
 }
 
+// ignore: non_constant_identifier_names
 Widget DiemTongHopWidget(
     {required List<DiemDanhTongHop> items, required double swidth}) {
   List<DataRow> rows = [];
   for (int i = 0; i < items.length; i++) {
     rows.add(DataRow(
-      color: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
+      color: WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
         if (i.isOdd) {
           return Colors.grey.withOpacity(0.3);
         }
@@ -94,8 +94,7 @@ Widget DiemTongHopWidget(
         width: 2.0,
         color: Colors.black12,
       ),
-      headingRowColor:
-          MaterialStateColor.resolveWith((states) => Colors.black26),
+      headingRowColor: WidgetStateColor.resolveWith((states) => Colors.black26),
       columns: <DataColumn>[
         DataColumn(
           label: SizedBox(

@@ -1,8 +1,11 @@
 class AppKeys {
   static String appMode = 'darkMode';
   static String userData = 'jwt';
-  static String razorKey = 'rzp_test_ImLClDOqMc2kc1';
-  static String onBoardDone = 'onBoard';
+
+  static const String studentID = "studentID";
+  static const String token = 'token';
+  static const String username = 'username';
+  static const String schoolIdentity = 'cdn_lilama2';
   static String title = "Thiên Hà Số";
   static bool noApi = true;
   static String lang = 'lang';

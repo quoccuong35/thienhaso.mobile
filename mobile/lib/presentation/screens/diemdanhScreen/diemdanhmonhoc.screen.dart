@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/core/models/diemdanhmonhoc.dart';
 
 import 'package:mobile/core/notifiers/diemdanh.notifier.dart';
@@ -18,6 +19,7 @@ class DiemDanhMonHocScreen extends StatelessWidget {
     return SafeArea(
         top: false,
         child: Scaffold(
+          backgroundColor: AppColors.creamColor,
           appBar: CustomAppbar("Điểm danh", context),
           body: Consumer<DiemDanhNotifier>(builder: (context, bangdiem, _) {
             return FutureBuilder(
@@ -41,7 +43,7 @@ class DiemDanhMonHocScreen extends StatelessWidget {
                         ),
                         Expanded(
                             child: ListView.builder(
-                          padding: const EdgeInsets.only(left: 15.0),
+                          padding: const EdgeInsets.all(5.0),
                           itemCount: data.length,
                           itemBuilder: (context, index) => DiemDanhMonHocWidget(
                               item: data[index], context: context),

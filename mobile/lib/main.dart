@@ -1,5 +1,5 @@
 // ignore_for_file: unused_import
-
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -35,7 +35,7 @@ class ThienHaSo extends StatelessWidget {
 }
 
 class Core extends StatelessWidget {
-  const Core({Key? key}) : super(key: key);
+  const Core({super.key});
   @override
   Widget build(BuildContext context) {
     return Consumer2<ThemeNotifier, LangNotifiers>(

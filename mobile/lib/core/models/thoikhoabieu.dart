@@ -18,4 +18,18 @@ class ThoiKhoaBieu {
       required this.phong,
       required this.giangvien,
       required this.loai});
+  Map<String, dynamic> toJson() {
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _data = <String, dynamic>{};
+    _data['masv'] = masv;
+    _data['ngayhoc'] = ngayhoc;
+    _data['ngay'] = ngay;
+    _data['tiet'] = tiet;
+    _data['malophocphan'] = malophocphan;
+    _data['tenlophocphan'] = tenlophocphan;
+    _data['phong'] = phong;
+    _data['giangvien'] = giangvien;
+    _data['loai'] = loai;
+    return _data;
+  }
 }

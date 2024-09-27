@@ -18,11 +18,11 @@ class DoiMatKhau extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    ThemeNotifier _themeNotifier = Provider.of<ThemeNotifier>(context);
-    var themeFlag = _themeNotifier.darkTheme;
+    ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
+    var themeFlag = themeNotifier.darkTheme;
     AuthenticationNotifier authNotifier(bool renderUI) =>
         Provider.of<AuthenticationNotifier>(context, listen: renderUI);
-    _guiYeuCau() {
+    guiYeuCau() {
       if (_formKey.currentState!.validate()) {
         ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
             text: 'Gửi yêu cầu thành công mật khẩu của bạn đã được đổi',
@@ -162,13 +162,13 @@ class DoiMatKhau extends StatelessWidget {
                             ],
                           ),
                           if (authNotifier(true).passwordLevel! == 'Weak')
-                            Text("Mật khẩu yếu")
+                            const Text("Mật khẩu yếu")
                           else if (authNotifier(true).passwordLevel! ==
                               'Medium')
-                            Text("Mật khẩu vừa phải")
+                            const Text("Mật khẩu vừa phải")
                           else if (authNotifier(true).passwordLevel! ==
                               'Strong')
-                            Text("Mật khẩu bảo mật tốt")
+                            const Text("Mật khẩu bảo mật tốt")
                         ],
                       ),
                     ),
@@ -182,7 +182,7 @@ class DoiMatKhau extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         onPressed: () {
-                          _guiYeuCau();
+                          guiYeuCau();
                         },
                         color: AppColors.primary,
                         child: const Text(

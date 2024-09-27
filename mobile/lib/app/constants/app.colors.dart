@@ -11,4 +11,7 @@ class AppColors {
   static Color bluedark = const Color.fromARGB(255, 42, 73, 78);
   static Color primary = Colors.blue;
   static const Color blackShadow = Color(0x0500000D);
+  static const Color blueGrey = Color(0xfff0f0f8);
+
+  static const Color color1 = Color.fromRGBO(230, 240, 255, 1);
 }

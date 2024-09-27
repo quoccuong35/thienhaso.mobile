@@ -4,7 +4,6 @@ import 'package:mobile/core/models/diemdanhmonhoc.dart';
 import 'package:mobile/core/models/diemdanhtonghop.dart';
 import 'package:mobile/core/models/diemhocphan.dart';
 import 'package:mobile/core/models/sinhvien.dart';
-import 'package:mobile/core/models/thoikhoabieu.dart';
 
 class Datas {
   static List<SinhVien> item = [
@@ -306,67 +305,161 @@ class Datas {
         cp: '0',
         kp: '0')
   ];
-  static List<ThoiKhoaBieu> thoikhoabien = [
-    ThoiKhoaBieu(
-        masv: '10000558',
-        ngayhoc: DateTime(2024, 08, 10),
-        ngay: 'Thứ 3 - 10/08/2024',
-        tiet: 'Tiết 1-3',
-        malophocphan: 'chinhtri',
-        tenlophocphan: 'Chính trị (Lý Thuyết)',
-        phong: 'Trực tuyến 32',
-        giangvien: 'Nguyễn Hồng Vân',
-        loai: '01'),
-    ThoiKhoaBieu(
-        masv: '10000558',
-        ngayhoc: DateTime(2024, 08, 10),
-        ngay: 'Thứ 3 - 10/08/2024',
-        tiet: 'Tiết 4-6',
-        malophocphan: 'ADD1',
-        tenlophocphan: 'Toán A1',
-        phong: 'Trực tuyến 32',
-        giangvien: 'Nguyễn Văn Hà',
-        loai: '01'),
-    ThoiKhoaBieu(
-        masv: '10000558',
-        ngayhoc: DateTime(2024, 08, 10),
-        ngay: 'Thứ 3 - 10/08/2024',
-        tiet: 'Tiết 7-11',
-        malophocphan: 'CSDL01',
-        tenlophocphan: 'Cơ sở dữ liệu 1',
-        phong: 'Trực tuyến 32',
-        giangvien: 'Trần Thành Hậu',
-        loai: '01'),
-    ThoiKhoaBieu(
-        masv: '10000558',
-        ngayhoc: DateTime(2024, 08, 11),
-        ngay: 'Thứ 4 - 11/08/2024',
-        tiet: 'Tiết 7-11',
-        malophocphan: 'CSDL01',
-        tenlophocphan: 'Cơ sở dữ liệu 1',
-        phong: 'Trực tuyến 32',
-        giangvien: 'Trần Thành Hậu',
-        loai: '01'),
-    ThoiKhoaBieu(
-        masv: '10000558',
-        ngayhoc: DateTime(2024, 08, 12),
-        ngay: 'Thứ 5 - 12/08/2024',
-        tiet: 'Tiết 1-3',
-        malophocphan: 'chinhtri',
-        tenlophocphan: 'Chính trị (Lý Thuyết)',
-        phong: 'Trực tuyến 30',
-        giangvien: 'Nguyễn Hồng Vân',
-        loai: '01'),
-    ThoiKhoaBieu(
-        masv: '10000558',
-        ngayhoc: DateTime(2024, 08, 12),
-        ngay: 'Thứ 5 - 12/08/2024',
-        tiet: 'Tiết 7-11',
-        malophocphan: 'CSDL01',
-        tenlophocphan: 'Cơ sở dữ liệu 1',
-        phong: 'Trực tuyến 30',
-        giangvien: 'Trần Thành Hậu',
-        loai: '01'),
+  static List thoikhoabien = [
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 10),
+      'ngay': 'Thứ 3 - 10/09/2024',
+      'tiet': 'Tiết 1-3',
+      'malophocphan': 'chinhtri',
+      'tenlophocphan': 'Chính trị (Lý Thuyết)',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Nguyễn Hồng Vân',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 10),
+      'ngay': 'Thứ 3 - 10/09/2024',
+      'tiet': 'Tiết 4-6',
+      'malophocphan': 'ADD1',
+      'tenlophocphan': 'Toán A1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Nguyễn Văn Hà',
+      'loai': '02'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 10),
+      'ngay': 'Thứ 3 - 10/09/2024',
+      'tiet': 'Tiết 7-11',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 11),
+      'ngay': 'Thứ 4 - 11/09/2024',
+      'tiet': 'Tiết 1-3',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 11),
+      'ngay': 'Thứ 4 - 11/09/2024',
+      'tiet': 'Tiết 7-11',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '02'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 12),
+      'ngay': 'Thứ 5 - 12/09/2024',
+      'tiet': 'Tiết 1-3',
+      'malophocphan': 'chinhtri',
+      'tenlophocphan': 'Chính trị (Lý Thuyết)',
+      'phong': 'Trực tuyến 30',
+      'giangvien': 'Nguyễn Hồng Vân',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 12),
+      'ngay': 'Thứ 5 - 12/09/2024',
+      'tiet': 'Tiết 7-11',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 30',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 17),
+      'ngay': 'Thứ 3 - 17/09/2024',
+      'tiet': 'Tiết 1-3',
+      'malophocphan': 'chinhtri',
+      'tenlophocphan': 'Chính trị (Lý Thuyết)',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Nguyễn Hồng Vân',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 17),
+      'ngay': 'Thứ 3 - 17/09/2024',
+      'tiet': 'Tiết 4-6',
+      'malophocphan': 'ADD1',
+      'tenlophocphan': 'Toán A1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Nguyễn Văn Hà',
+      'loai': '02'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 17),
+      'ngay': 'Thứ 3 - 17/09/2024',
+      'tiet': 'Tiết 7-11',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 18),
+      'ngay': 'Thứ 4 - 18/09/2024',
+      'tiet': 'Tiết 1-3',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 18),
+      'ngay': 'Thứ 4 - 18/09/2024',
+      'tiet': 'Tiết 7-11',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 32',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '02'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 19),
+      'ngay': 'Thứ 5 - 19/09/2024',
+      'tiet': 'Tiết 1-3',
+      'malophocphan': 'chinhtri',
+      'tenlophocphan': 'Chính trị (Lý Thuyết)',
+      'phong': 'Trực tuyến 30',
+      'giangvien': 'Nguyễn Hồng Vân',
+      'loai': '01'
+    },
+    {
+      'masv': '10000558',
+      'ngayhoc': DateTime(2024, 09, 19),
+      'ngay': 'Thứ 5 - 19/09/2024',
+      'tiet': 'Tiết 7-11',
+      'malophocphan': 'CSDL01',
+      'tenlophocphan': 'Cơ sở dữ liệu 1',
+      'phong': 'Trực tuyến 30',
+      'giangvien': 'Trần Thành Hậu',
+      'loai': '01'
+    },
   ];
   static List<DiemDanhMonHoc> diemdanhmonhoc = [
     DiemDanhMonHoc(
@@ -462,5 +555,239 @@ class Datas {
       camthi: 'Không bị cấm thi',
       ghichu: '',
     ),
+  ];
+  static var testDiemChiTiet = [
+    {
+      "yearID": 2022,
+      "semester": 1,
+      "orderIndex": 1,
+      "subjectMarks": [
+        {
+          "subjectID": "MH1",
+          "subjectName": "Cơ khí chế tạo",
+          "orderIndex": 1,
+          "fields": [
+            {
+              "fieldId": "UnitText",
+              "fieldCaption": "Số TC",
+              "fieldValue": "3",
+              "orderIndex": 1
+            },
+            {
+              "fieldId": "Mark1",
+              "fieldCaption": "TX",
+              "fieldValue": "5-8",
+              "orderIndex": 2
+            },
+            {
+              "fieldId": "Mark2",
+              "fieldCaption": "ĐK",
+              "fieldValue": "6-3-5-3",
+              "orderIndex": 3
+            },
+            {
+              "fieldId": "Exam1",
+              "fieldCaption": "Thi 1",
+              "fieldValue": "3.5",
+              "orderIndex": 4
+            },
+            {
+              "fieldId": "Exam2",
+              "fieldCaption": "Thi 2",
+              "fieldValue": "2.5",
+              "orderIndex": 5
+            },
+            {
+              "fieldId": "Exam3",
+              "fieldCaption": "Thi 3",
+              "fieldValue": "5.4",
+              "orderIndex": 6
+            },
+            {
+              "fieldId": "Summary1",
+              "fieldCaption": "TKM1",
+              "fieldValue": "5.4",
+              "orderIndex": 7
+            },
+            {
+              "fieldId": "Summary2",
+              "fieldCaption": "TKM2",
+              "fieldValue": "2.4",
+              "orderIndex": 8
+            },
+            {
+              "fieldId": "Summary3",
+              "fieldCaption": "TKM3",
+              "fieldValue": "8.4",
+              "orderIndex": 9
+            },
+            {
+              "fieldId": "OtherFinalSummary",
+              "fieldCaption": "Điểm QĐ",
+              "fieldValue": "3.8",
+              "orderIndex": 10
+            }
+          ]
+        },
+        {
+          "subjectID": "MH2",
+          "subjectName": "Hàn quốc tế",
+          "orderIndex": 2,
+          "fields": [
+            {
+              "fieldId": "UnitText",
+              "fieldCaption": "Số TC",
+              "fieldValue": "3",
+              "orderIndex": 1
+            },
+            {
+              "fieldId": "Mark1",
+              "fieldCaption": "TX",
+              "fieldValue": "5-8",
+              "orderIndex": 2
+            },
+            {
+              "fieldId": "Mark2",
+              "fieldCaption": "ĐK",
+              "fieldValue": "6-3-5-3",
+              "orderIndex": 3
+            },
+            {
+              "fieldId": "Exam1",
+              "fieldCaption": "Thi 1",
+              "fieldValue": "3.5",
+              "orderIndex": 4
+            },
+            {
+              "fieldId": "Exam2",
+              "fieldCaption": "Thi 2",
+              "fieldValue": "2.5",
+              "orderIndex": 5
+            },
+            {
+              "fieldId": "Exam3",
+              "fieldCaption": "Thi 3",
+              "fieldValue": "5.4",
+              "orderIndex": 6
+            },
+            {
+              "fieldId": "Summary1",
+              "fieldCaption": "TKM1",
+              "fieldValue": "5.4",
+              "orderIndex": 7
+            },
+            {
+              "fieldId": "Summary2",
+              "fieldCaption": "TKM2",
+              "fieldValue": "2.4",
+              "orderIndex": 8
+            },
+            {
+              "fieldId": "Summary3",
+              "fieldCaption": "TKM3",
+              "fieldValue": "8.4",
+              "orderIndex": 9
+            },
+            {
+              "fieldId": "OtherFinalSummary",
+              "fieldCaption": "Điểm QĐ",
+              "fieldValue": "3.8",
+              "orderIndex": 10
+            },
+            {
+              "fieldId": "LearningLevel",
+              "fieldCaption": "Điểm chữ",
+              "fieldValue": "A+",
+              "orderIndex": 11
+            },
+            {
+              "fieldId": "PassedText",
+              "fieldCaption": "PassedText",
+              "fieldValue": "Đạt",
+              "orderIndex": 12
+            }
+          ]
+        },
+        {
+          "subjectID": "MH3",
+          "subjectName": "Giáo dục thể chất",
+          "orderIndex": 3,
+          "fields": [
+            {
+              "fieldId": "UnitText",
+              "fieldCaption": "Số TC",
+              "fieldValue": "3",
+              "orderIndex": 1
+            },
+            {
+              "fieldId": "Mark1",
+              "fieldCaption": "TX",
+              "fieldValue": "5-8",
+              "orderIndex": 2
+            },
+            {
+              "fieldId": "Mark2",
+              "fieldCaption": "ĐK",
+              "fieldValue": "6-3-5-3",
+              "orderIndex": 3
+            },
+            {
+              "fieldId": "Exam1",
+              "fieldCaption": "Thi 1",
+              "fieldValue": "3.5",
+              "orderIndex": 4
+            },
+            {
+              "fieldId": "Exam2",
+              "fieldCaption": "Thi 2",
+              "fieldValue": "2.5",
+              "orderIndex": 5
+            },
+            {
+              "fieldId": "Exam3",
+              "fieldCaption": "Thi 3",
+              "fieldValue": "5.4",
+              "orderIndex": 6
+            },
+            {
+              "fieldId": "Summary1",
+              "fieldCaption": "TKM1",
+              "fieldValue": "5.4",
+              "orderIndex": 7
+            },
+            {
+              "fieldId": "Summary2",
+              "fieldCaption": "TKM2",
+              "fieldValue": "2.4",
+              "orderIndex": 8
+            },
+            {
+              "fieldId": "Summary3",
+              "fieldCaption": "TKM3",
+              "fieldValue": "8.4",
+              "orderIndex": 9
+            },
+            {
+              "fieldId": "OtherFinalSummary",
+              "fieldCaption": "Điểm QĐ",
+              "fieldValue": "3.8",
+              "orderIndex": 10
+            },
+            {
+              "fieldId": "LearningLevel",
+              "fieldCaption": "Điểm chữ",
+              "fieldValue": "A+",
+              "orderIndex": 11
+            },
+            {
+              "fieldId": "PassedText",
+              "fieldCaption": "PassedText",
+              "fieldValue": "Đạt",
+              "orderIndex": 12
+            }
+          ]
+        }
+      ]
+    }
   ];
 }

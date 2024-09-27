@@ -13,7 +13,7 @@ import 'package:mobile/core/utils/snackbar.util.dart';
 class DiemDanhNotifier with ChangeNotifier {
   Future diemDanhTongHop({required BuildContext context}) async {
     try {
-      String masv = "";
+      String masv = "10000558";
       await ReadCache.getString(key: AppKeys.userData).then((value) {
         if (value != null) {
           masv = value;
@@ -39,12 +39,13 @@ class DiemDanhNotifier with ChangeNotifier {
 
   Future diemDanhMonHoc({required BuildContext context}) async {
     try {
-      String masv = "";
+      String masv = "10000558";
       await ReadCache.getString(key: AppKeys.userData).then((value) {
         if (value != null) {
           masv = value;
         }
       });
+      // ignore: unnecessary_null_comparison
       if (masv != null && masv != "") {
         var data = Datas.diemdanhmonhoc.where((it) => it.masv == masv).toList();
         if (data.isNotEmpty)

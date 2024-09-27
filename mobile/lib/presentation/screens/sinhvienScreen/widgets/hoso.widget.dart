@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/core/models/sinhvien.dart';
+import 'package:mobile/core/models/studentinfo.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
-Widget HoSoWidget({required SinhVien user}) {
+// ignore: non_constant_identifier_names
+Widget HoSoWidget({required StudentInfo user}) {
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 2.0),
     padding: const EdgeInsets.all(10.0),
@@ -18,7 +20,7 @@ Widget HoSoWidget({required SinhVien user}) {
         ),
         vSizedBox1,
         Padding(
-            padding: EdgeInsets.only(left: 5, right: 5),
+            padding: const EdgeInsets.only(left: 5, right: 5),
             child: Column(
               children: [
                 Row(
@@ -27,7 +29,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Mã sinh viên"),
                     Text(
-                      user.masv,
+                      user.studentCode!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -41,7 +43,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Giới tính"),
                     Text(
-                      user.gioitinh,
+                      'N/A',
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -55,7 +57,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Ngày sinh"),
                     Text(
-                      user.ngaysinh,
+                      user.birthDateText!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -69,7 +71,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Nơi sinh"),
                     Text(
-                      user.noisinh,
+                      user.birthPlace!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -83,7 +85,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Nguyên quán"),
                     Text(
-                      user.nguyenquan,
+                      user.birthPlace!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -97,7 +99,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Lớp"),
                     Text(
-                      user.lop,
+                      user.className!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -111,7 +113,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Số điện thoại"),
                     Text(
-                      user.sodienthoai,
+                      user.tel!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -125,7 +127,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Email"),
                     Text(
-                      user.email,
+                      user.email!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -139,7 +141,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Niên khóa"),
                     Text(
-                      user.nienkhoa,
+                      user.courseName!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],
@@ -153,7 +155,7 @@ Widget HoSoWidget({required SinhVien user}) {
                   children: [
                     const Text("Ngành/nghề"),
                     Text(
-                      user.nganhnghe,
+                      user.specialBranchName!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],

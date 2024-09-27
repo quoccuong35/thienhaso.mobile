@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/core/notifiers/lang.notifiers.dart';
-import 'package:mobile/core/notifiers/sinhvien.notifier.dart';
+
+import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:mobile/presentation/screens/sinhvienScreen/widgets/caidat.widget.dart';
 import 'package:mobile/presentation/screens/sinhvienScreen/widgets/header.widget.dart';
 import 'package:mobile/presentation/screens/sinhvienScreen/widgets/hoso.widget.dart';
@@ -13,32 +14,22 @@ class MainSinhVienScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SinhVienNotifier svNotifier = Provider.of<SinhVienNotifier>(context);
-    var user = svNotifier.sinhVien;
+    StudentNotifier studentNotifier = Provider.of<StudentNotifier>(context);
+    var user = studentNotifier.student;
     return Consumer<LangNotifiers>(builder: (context, lang, _) {
       return Scaffold(
         appBar: HeaderWidgetV1(
-            context: context, hoten: user.hoten, urlimg: user.urlimg),
+            context: context, hoten: user.fullName!, urlimg: user.urlImge),
         body: SafeArea(
           top: false,
-          child: Column(
+          child: ListView(
+            padding: const EdgeInsets.all(0),
             children: [
-              // HeaderWidget(
-              //     context: context,
-              //     urlimg: user.urlimg,
-              //     hoten: user.hoten),
-              Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.all(0),
-                  children: [
-                    HoSoWidget(user: user),
-                    vSizedBox1,
-                    dividerH2B1w2,
-                    vSizedBox1,
-                    CaiDat(context: context, lang: lang, sv: svNotifier),
-                  ],
-                ),
-              )
+              HoSoWidget(user: user),
+              vSizedBox1,
+              dividerH2B1w2,
+              vSizedBox1,
+              CaiDat(context: context, lang: lang, sv: studentNotifier),
             ],
           ),
         ),

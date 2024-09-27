@@ -1,48 +1,59 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:mobile/app/constants/app.keys.dart';
 
 import '../../app/routers/api.routes.dart';
 
 class AuthenticationAPI {
   final client = http.Client();
-  final headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': "*",
-  };
-
-//User Sign Up
-  Future createAccount(
-      {required String useremail,
-      required String username,
-      required String userpassword}) async {
-    const subUrl = '/auth/signup';
+  Future userLogin(
+      {required String usrename,
+      required String userpassword,
+      required String token}) async {
+    const subUrl = '/system/CheckLogin';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
-    final http.Response response = await client.post(uri,
-        headers: headers,
-        body: jsonEncode({
-          "useremail": useremail,
-          "userpassword": userpassword,
-          "username": username
-        }));
-    final dynamic body = response.body;
-    return body;
+    final bodypara = jsonEncode({
+      "schoolIdentity": AppKeys.schoolIdentity,
+      "loginName": usrename,
+      "Password": userpassword,
+    });
+    final headers = {
+      'Content-Type': 'application/json',
+      "Authorization": token
+    };
+    final http.Response response =
+        await client.post(uri, headers: headers, body: bodypara);
+    JsonDecoder jsonDecoder = const JsonDecoder();
+    return jsonDecoder.convert(response.body);
   }
 
-  Future userLogin(
-      {required String usrename, required String userpassword}) async {
-    const subUrl = '/auth/login';
+  Future<String?> authenticate() async {
+    final client = http.Client();
+    final headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      "Authorization": ApiRoutes.secretKey
+    };
+    const subUrl = '/users/authenticate';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
+    final http.Response response = await client.post(
+      uri,
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      JsonDecoder jsonDecoder = const JsonDecoder();
+      final dynamic data = jsonDecoder.convert(response.body);
+      return data['access_token'].toString();
+    }
+    return null;
+  }
 
-    final http.Response response = await client.post(uri,
-        headers: headers,
-        body: jsonEncode({
-          "usrename": usrename,
-          "userpassword": userpassword,
-        }));
-    final dynamic body = response.body;
-    //print(body);
-    return body;
+  Future setHeaders({required authorization}) async {
+    return {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      "Authorization": authorization
+    };
   }
 }

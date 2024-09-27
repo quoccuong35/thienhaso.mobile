@@ -6,6 +6,7 @@ import 'package:mobile/presentation/widgets/custom.back.btn.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
+// ignore: non_constant_identifier_names
 Widget HeaderWidget(
     {required BuildContext context,
     required String hoten,
@@ -21,9 +22,9 @@ Widget HeaderWidget(
       children: [
         Row(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.15,
-              child: CustomBackPop(),
+              child: const CustomBackPop(),
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.85,
@@ -50,7 +51,7 @@ Widget HeaderWidget(
                           spreadRadius: 2,
                           blurRadius: 10,
                           color: AppColors.white.withOpacity(0.5),
-                          offset: Offset(0, 10))
+                          offset: const Offset(0, 10))
                     ],
                     shape: BoxShape.circle,
                     image: DecorationImage(
@@ -93,6 +94,7 @@ Widget HeaderWidget(
   );
 }
 
+// ignore: non_constant_identifier_names
 AppBar HeaderWidgetV1(
     {required BuildContext context,
     required String hoten,
@@ -115,9 +117,9 @@ AppBar HeaderWidgetV1(
         children: [
           Row(
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.15,
-                child: CustomBackPop(),
+                child: const CustomBackPop(),
               ),
               Expanded(
                 child: Container(
@@ -146,7 +148,7 @@ AppBar HeaderWidgetV1(
                             spreadRadius: 2,
                             blurRadius: 10,
                             color: AppColors.white.withOpacity(0.5),
-                            offset: Offset(0, 10))
+                            offset: const Offset(0, 10))
                       ],
                       shape: BoxShape.circle,
                       image: DecorationImage(
