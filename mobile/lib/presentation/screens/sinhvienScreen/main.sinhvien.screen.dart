@@ -19,7 +19,7 @@ class MainSinhVienScreen extends StatelessWidget {
     return Consumer<LangNotifiers>(builder: (context, lang, _) {
       return Scaffold(
         appBar: HeaderWidgetV1(
-            context: context, hoten: user.fullName!, urlimg: user.urlImge),
+            context: context, hoten: user.fullName!, urlimg: user.avatarUrl!),
         body: SafeArea(
           top: false,
           child: ListView(

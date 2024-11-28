@@ -3,6 +3,7 @@ import 'package:mobile/core/models/objresult.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
+// ignore: non_constant_identifier_names
 Widget ToanKhoaCard({required BuildContext context, required ObjResult obj}) {
   return Column(
     children: [

@@ -115,10 +115,10 @@ class _ThoiKhoaBieuScreenState extends State<ThoiKhoaBieuScreen> {
                   return Expanded(
                     child: thoikhoabieu.isLoading
                         ? CustomLoading.Loading(context: context)
-                        : thoikhoabieu.serachedThoiKhoaBieu.isEmpty
+                        : thoikhoabieu.serachedScheduleList.isEmpty
                             ? CustomDataEntyWidget.KhongCoDuLieu()
                             : GroupedListViewWidget(
-                                data: thoikhoabieu.serachedThoiKhoaBieu,
+                                data: thoikhoabieu.serachedScheduleList,
                                 context: context,
                                 controller: controller),
                   );

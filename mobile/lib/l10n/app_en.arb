@@ -1,9 +1,9 @@
 {
-    "taiKhoan": "User name",
-    "matKhau": "Pass word",
-    "dangNhap": "Login",
-    "quenMatKhau":"Forgot password",
-    "lgTieuDe1":"Welcome back, ",
-    "lgTieuDe2":"it's good to see you again",
-    "required":"The field '{name}'  is required"
-  }
+  "taiKhoan": "User name",
+  "matKhau": "Pass word",
+  "dangNhap": "Login",
+  "quenMatKhau": "Forgot password",
+  "lgTieuDe1": "Welcome back, ",
+  "lgTieuDe2": "it's good to see you again",
+  "required": "The field '{name}'  is required"
+}

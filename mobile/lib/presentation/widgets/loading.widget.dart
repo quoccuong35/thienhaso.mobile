@@ -20,12 +20,25 @@ class CustomLoading {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 65.0,
-                    child: Padding(
-                        padding: const EdgeInsets.only(top: 20.0, bottom: 18.0),
-                        child: Image.asset(AppKeys.logo, fit: BoxFit.fill)),
+                  Container(
+                    width: 120,
+                    height: 120,
+                    margin: const EdgeInsets.only(top: 20.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 4, color: AppColors.white),
+                        boxShadow: [
+                          BoxShadow(
+                              spreadRadius: 2,
+                              blurRadius: 10,
+                              color: AppColors.white.withOpacity(0.5),
+                              offset: const Offset(0, 10))
+                        ],
+                        shape: BoxShape.circle,
+                        image: const DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              "assets/images/logo.png",
+                            ))),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),

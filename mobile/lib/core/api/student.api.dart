@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mobile/app/constants/app.keys.dart';
 
 import '../../app/routers/api.routes.dart';
 
@@ -19,7 +18,7 @@ class StudentApi {
     const subUrl = '/SIM_Student/GetInfo';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
     final body = jsonEncode({
-      "schoolIdentity": AppKeys.schoolIdentity,
+      "schoolIdentity": ApiRoutes.schoolIdentity,
       "username": username,
       "studentID": studentID,
     });

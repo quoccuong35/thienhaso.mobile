@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
-import 'package:mobile/core/models/diemdanhmonhoc.dart';
+import 'package:mobile/core/models/classsubject.dart';
 
 import 'package:mobile/core/notifiers/diemdanh.notifier.dart';
 import 'package:mobile/presentation/screens/diemdanhScreen/widgets/diemdanhmonhoc.widget.dart';
@@ -21,16 +21,16 @@ class DiemDanhMonHocScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: AppColors.creamColor,
           appBar: CustomAppbar("Điểm danh", context),
-          body: Consumer<DiemDanhNotifier>(builder: (context, bangdiem, _) {
+          body: Consumer<DiemDanhNotifier>(builder: (context, diemdanh, _) {
             return FutureBuilder(
-                future: bangdiem.diemDanhMonHoc(context: context),
+                future: diemdanh.classSubjectList(context: context),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return CustomLoading.Loading(context: context);
                   } else if (!snapshot.hasData) {
                     return CustomDataEntyWidget.KhongCoDuLieu();
                   } else {
-                    var data = snapshot.data as List<DiemDanhMonHoc>;
+                    var data = snapshot.data as List<ClassSubject>;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -45,7 +45,7 @@ class DiemDanhMonHocScreen extends StatelessWidget {
                             child: ListView.builder(
                           padding: const EdgeInsets.all(5.0),
                           itemCount: data.length,
-                          itemBuilder: (context, index) => DiemDanhMonHocWidget(
+                          itemBuilder: (context, index) => diemDanhMonHocWidget(
                               item: data[index], context: context),
                         )),
                       ],

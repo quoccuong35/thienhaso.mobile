@@ -145,6 +145,16 @@ class CustomTextWidget {
     );
   }
 
+  static bodyTextS18Cblue() {
+    return TextStyle(
+      fontFamily: AppFonts.lato,
+      fontSize: 18,
+      color: AppColors.primary,
+      fontWeight: FontWeight.bold,
+      overflow: TextOverflow.clip,
+    );
+  }
+
   static bodyTextS14B() {
     return TextStyle(
       fontFamily: AppFonts.lato,
@@ -169,6 +179,16 @@ class CustomTextWidget {
     return const TextStyle(
       fontFamily: AppFonts.lato,
       fontWeight: FontWeight.w900,
+      fontSize: AppFonts.fontSize16,
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+
+  static bodyTextS16W6() {
+    return const TextStyle(
+      fontFamily: AppFonts.lato,
+      fontWeight: FontWeight.w600,
       fontSize: AppFonts.fontSize16,
       color: Colors.black,
       overflow: TextOverflow.ellipsis,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/models/objresult.dart';
 import 'package:mobile/core/notifiers/bangdiem.notifier.dart';
 import 'package:mobile/presentation/screens/bangdiemScreen/widgets/toankhoa.card.widget.dart';
-import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
 import 'package:mobile/presentation/widgets/khongcodulieu.widget.dart';
 import 'package:mobile/presentation/widgets/loading.widget.dart';

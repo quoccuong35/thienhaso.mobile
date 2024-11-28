@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
-import 'package:mobile/core/models/sinhvien.dart';
 import 'package:mobile/core/models/studentinfo.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
@@ -34,20 +33,20 @@ Widget HoSoWidget({required StudentInfo user}) {
                     )
                   ],
                 ),
-                vSizedBox1,
-                dividerH2B1w2,
-                vSizedBox1,
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Giới tính"),
-                    Text(
-                      'N/A',
-                      style: CustomTextWidget.bodyTextS14B(),
-                    )
-                  ],
-                ),
+                // vSizedBox1,
+                // dividerH2B1w2,
+                // vSizedBox1,
+                // Row(
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     const Text("Giới tính"),
+                //     Text(
+                //       'N/A',
+                //       style: CustomTextWidget.bodyTextS14B(),
+                //     )
+                //   ],
+                // ),
                 vSizedBox1,
                 dividerH2B1w2,
                 vSizedBox1,
@@ -79,20 +78,20 @@ Widget HoSoWidget({required StudentInfo user}) {
                 vSizedBox1,
                 dividerH2B1w2,
                 vSizedBox1,
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Nguyên quán"),
-                    Text(
-                      user.birthPlace!,
-                      style: CustomTextWidget.bodyTextS14B(),
-                    )
-                  ],
-                ),
-                vSizedBox1,
-                dividerH2B1w2,
-                vSizedBox1,
+                // Row(
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     const Text("Nguyên quán"),
+                //     Text(
+                //       user.birthPlace!,
+                //       style: CustomTextWidget.bodyTextS14B(),
+                //     )
+                //   ],
+                // ),
+                // vSizedBox1,
+                // dividerH2B1w2,
+                // vSizedBox1,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,6 +113,20 @@ Widget HoSoWidget({required StudentInfo user}) {
                     const Text("Số điện thoại"),
                     Text(
                       user.tel!,
+                      style: CustomTextWidget.bodyTextS14B(),
+                    )
+                  ],
+                ),
+                vSizedBox1,
+                dividerH2B1w2,
+                vSizedBox1,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("Đt liên lạc (của phụ huynh)"),
+                    Text(
+                      user.contactTel!,
                       style: CustomTextWidget.bodyTextS14B(),
                     )
                   ],

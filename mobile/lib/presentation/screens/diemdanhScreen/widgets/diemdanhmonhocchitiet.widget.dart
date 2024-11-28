@@ -1,86 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
-import 'package:mobile/core/models/diemdanhmonhoc.dart';
+
+import 'package:mobile/core/models/subjectcheckinglist.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
-// ignore: non_constant_identifier_names
-Widget DiemDanhMonHocChiTietWidget({required DiemDanhChiTiet item}) {
-  return Container(
-    decoration: BoxDecoration(
-        color: AppColors.blackShadow,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 15,
-            color: Color.fromARGB(5, 73, 73, 77),
-            offset: Offset(
-              0,
-              15,
-            ),
-            spreadRadius: 13,
+Widget diemDanhMonHocChiTietWidgetNew({required SubjectCheckingList item}) {
+  return Card(
+    elevation: 8.0,
+    child: ListTile(
+      title: Row(
+        children: [
+          Icon(
+            Icons.calendar_month,
+            color: AppColors.bluedark,
           ),
-        ]),
-    padding: const EdgeInsets.all(10.0),
-    margin: const EdgeInsets.only(bottom: 15.0),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Trạng thái",
-              style: CustomTextWidget.bodyTextS14W6(),
+          Text(
+            item.date.toString(),
+            style: CustomTextWidget.bodyTextS16W6(),
+          ),
+        ],
+      ),
+      subtitle: Container(
+          decoration: BoxDecoration(
+            color: AppColors.blueGrey,
+            borderRadius: BorderRadius.circular(
+              5.0,
             ),
-            Text("Ngày vắng", style: CustomTextWidget.bodyTextS14W6()),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(children: [
-              Icon(
-                item.trangthai == "1"
-                    ? Icons.highlight_remove_outlined
-                    : Icons.check_circle,
-                size: 20,
-                color: item.trangthai == "1" ? Colors.red : Colors.green,
+          ),
+          constraints: const BoxConstraints(
+            minHeight: 50.0,
+          ),
+          padding: const EdgeInsets.all(
+            10.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: "Có phép: ",
+                            style: CustomTextWidget.bodyTextS14W6()),
+                        TextSpan(
+                            text: item.permissionQuantity.toString(),
+                            style: CustomTextWidget.bodyTextS14Cblue())
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: "Không phép: ",
+                            style: CustomTextWidget.bodyTextS14W6()),
+                        TextSpan(
+                            text: item.noPermissionQuantity.toString(),
+                            style: CustomTextWidget.bodyTextS14W6red())
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                item.trangthai == "1" ? "Không phép" : "Có phép",
-                style: TextStyle(
-                    color: item.trangthai == "1" ? Colors.red : Colors.black),
-              )
-            ]),
-            Text(item.ngayvang, style: CustomTextWidget.bodyTextS14B()),
-          ],
-        ),
-        vSizedBox1,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Tiết hiện hành", style: CustomTextWidget.bodyTextS14W6()),
-            Text("Số tiết vắng", style: CustomTextWidget.bodyTextS14W6()),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(item.tiethienhanh, style: CustomTextWidget.bodyTextS14B()),
-            Align(
-              alignment: Alignment.centerLeft,
-              child:
-                  Text(item.sotietvang, style: CustomTextWidget.bodyTextS14B()),
-            )
-          ],
-        )
-      ],
+              vSizedBox1,
+              RichText(
+                textAlign: TextAlign.justify,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Mô tả: ",
+                      style: CustomTextWidget.bodyTextS14B(),
+                    ),
+                    TextSpan(
+                      text: item.description,
+                      style: CustomTextWidget.bodyTextS14(),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          )),
     ),
   );
 }

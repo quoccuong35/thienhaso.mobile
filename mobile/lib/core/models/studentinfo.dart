@@ -22,7 +22,7 @@ class StudentInfo {
 
   late DateTime? createdDate;
 
-  late String urlImge = 'assets/images/logo.png';
+  late String? avatarUrl;
 
   StudentInfo({
     required this.studentID,
@@ -61,6 +61,7 @@ class StudentInfo {
     className = json['className'] ?? "";
     courseName = json['courseName'] ?? "";
     specialBranchName = json['specialBranchName'] ?? "";
+    avatarUrl = json['avatarUrl'];
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};

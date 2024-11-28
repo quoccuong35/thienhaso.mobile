@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.fonts.dart';
-import 'package:mobile/core/models/diemdanhtonghop.dart';
+import 'package:mobile/core/models/classsubject.dart';
 
 textHeader() {
   return const TextStyle(
@@ -18,7 +18,7 @@ textCell() {
 
 // ignore: non_constant_identifier_names
 Widget DiemTongHopWidget(
-    {required List<DiemDanhTongHop> items, required double swidth}) {
+    {required List<ClassSubject> items, required double swidth}) {
   List<DataRow> rows = [];
   for (int i = 0; i < items.length; i++) {
     rows.add(DataRow(
@@ -34,7 +34,7 @@ Widget DiemTongHopWidget(
           child: Padding(
             padding: const EdgeInsets.only(left: 3),
             child: Text(
-              items[i].mamom,
+              items[i].subjectID!,
               style: textCell(),
             ),
           ),
@@ -44,7 +44,7 @@ Widget DiemTongHopWidget(
             child: Padding(
               padding: const EdgeInsets.only(left: 3),
               child: Text(
-                items[i].tenmon,
+                items[i].subjectName!,
                 style: textCell(),
               ),
             ))),
@@ -52,7 +52,7 @@ Widget DiemTongHopWidget(
           width: swidth * 0.08,
           child: Center(
             child: Text(
-              items[i].tc,
+              items[i].unitText!.toString(),
               style: textCell(),
             ),
           ),
@@ -61,25 +61,18 @@ Widget DiemTongHopWidget(
           width: swidth * 0.1,
           child: Center(
             child: Text(
-              items[i].sogio,
+              items[i].totalQuantity!.toString(),
               style: textCell(),
             ),
           ),
         )),
         DataCell(SizedBox(
-          width: swidth * 0.08,
+          width: swidth * 0.2,
           child: Center(
             child: Text(
-              items[i].cp,
-              style: textCell(),
-            ),
-          ),
-        )),
-        DataCell(SizedBox(
-          width: swidth * 0.08,
-          child: Center(
-            child: Text(
-              items[i].kp,
+              items[i].offQuantityTotal != null
+                  ? items[i].offQuantityTotal!.toString()
+                  : "",
               style: textCell(),
             ),
           ),
@@ -143,21 +136,10 @@ Widget DiemTongHopWidget(
         ),
         DataColumn(
           label: SizedBox(
-            width: swidth * 0.08,
+            width: swidth * 0.2,
             child: Center(
               child: Text(
-                "CP",
-                style: textHeader(),
-              ),
-            ),
-          ),
-        ),
-        DataColumn(
-          label: SizedBox(
-            width: swidth * 0.08,
-            child: Center(
-              child: Text(
-                "KP",
+                "T.Vắng",
                 style: textHeader(),
               ),
             ),

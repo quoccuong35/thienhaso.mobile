@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/notifiers/notifylist.notifer.dart';
 import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:provider/provider.dart';
 import '../../app/constants/app.keys.dart';
@@ -23,12 +24,17 @@ class AuthenticationNotifier with ChangeNotifier {
   bool _obscureText = true;
   bool get obscureText => _obscureText;
 
-  final bool _autoLogin = false;
-  bool get autoLogin => _autoLogin;
+  bool _login = false;
+  bool get login => _login;
   bool erroAuthen = false;
 
   void changeObscureText() {
     _obscureText = !_obscureText;
+    notifyListeners();
+  }
+
+  void changeLogin() {
+    _login = !login;
     notifyListeners();
   }
 
@@ -62,6 +68,7 @@ class AuthenticationNotifier with ChangeNotifier {
       required BuildContext context,
       required String userpassword}) async {
     try {
+      changeLogin();
       String token = "";
       await ReadCache.getString(key: AppKeys.token).then((value) {
         if (value != null) token = value;
@@ -73,6 +80,7 @@ class AuthenticationNotifier with ChangeNotifier {
           ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
               text: 'Lỗi không kết nói được server vui lòng liên hệ quản trị',
               context: context));
+          changeLogin();
           return;
         } else
           // ignore: curly_braces_in_flow_control_structures
@@ -93,6 +101,14 @@ class AuthenticationNotifier with ChangeNotifier {
               token: token,
               context: context);
           if (result) {
+            NotifyListNotifier notify =
+                Provider.of<NotifyListNotifier>(context, listen: false);
+            await notify.getNotifyListKhoiTao(
+                context: context,
+                token: token,
+                username: username,
+                studentID: id);
+            _login = !login;
             await WriteCache.setInt(key: AppKeys.studentID, value: id)
                 .whenComplete(() {
               WriteCache.setString(key: AppKeys.username, value: username)
@@ -106,14 +122,13 @@ class AuthenticationNotifier with ChangeNotifier {
             });
           }
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
-              text: data['responseDesc'], context: context));
+          showSnackBar(text: data['responseDesc'], context: context);
+          changeLogin();
         }
       }
     } on SocketException catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
-          text: 'Oops No You Need A Good Internet Connection',
-          context: context));
+      showSnackBar(
+          text: 'Không kết nói được Internet hoặc Máy chủ', context: context);
     } catch (e) {
       // ignore: avoid_print
       print(e);
@@ -134,9 +149,8 @@ class AuthenticationNotifier with ChangeNotifier {
         );
       }
     } on SocketException catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
-          text: 'Oops No You Need A Good Internet Connection',
-          context: context));
+      showSnackBar(
+          text: 'Không kết nói được Internet hoặc Máy chủ', context: context);
     } catch (e) {
       // ignore: avoid_print
       print(e);

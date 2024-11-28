@@ -153,7 +153,7 @@ AppBar HeaderWidgetV1(
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(
+                          image: NetworkImage(
                             urlimg,
                           ))),
                 ),

@@ -19,7 +19,7 @@ class SubjectMark {
   late final String subjectID;
   late final String subjectName;
   late final int unitText;
-  late final double finalSummary;
+  late final dynamic finalSummary;
   late final int orderIndex;
   late final List<ObjResult> fields;
   SubjectMark.fromJson(Map<String, dynamic> json) {

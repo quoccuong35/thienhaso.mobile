@@ -6,11 +6,11 @@ class Menus {
     Menu(
         title: "Thời khóa biểu",
         iconData: Icons.calendar_month,
-        color: Colors.blue,
+        color: const Color.fromARGB(255, 86, 87, 53),
         datbiet: true,
         routername: "/thoiKhoaBieu"),
     Menu(
-        title: "Bản điểm",
+        title: "Bảng điểm",
         iconData: Icons.featured_play_list_outlined,
         color: Colors.orangeAccent,
         datbiet: true,
@@ -19,8 +19,8 @@ class Menus {
         title: "Chương trình đào tạo",
         iconData: Icons.list_alt_sharp,
         color: Colors.blueGrey,
-        datbiet: true,
-        routername: ""),
+        datbiet: false,
+        routername: "/chuongTrinhDaoTao"),
     Menu(
         title: "Điểm danh",
         iconData: Icons.check_circle,
@@ -32,11 +32,17 @@ class Menus {
         iconData: Icons.monetization_on,
         color: const Color.fromARGB(255, 36, 14, 21),
         datbiet: false,
-        routername: ""),
+        routername: "/hocPhi"),
     Menu(
         title: "Thông báo",
         iconData: Icons.info_rounded,
-        color: const Color.fromARGB(255, 86, 87, 53),
+        color: Colors.blue,
+        datbiet: false,
+        routername: "/thongBao"),
+    Menu(
+        title: "Nợ học phần",
+        iconData: Icons.local_library_sharp,
+        color: const Color.fromARGB(255, 179, 57, 57),
         datbiet: false,
         routername: ""),
     Menu(

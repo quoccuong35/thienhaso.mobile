@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:mobile/app/constants/app.keys.dart';
 import 'package:mobile/app/routers/api.routes.dart';
 
 class BangDiemApi {
@@ -18,7 +17,7 @@ class BangDiemApi {
     const subUrl = '/SIM_Student/GetSubjectMarkOfCourse';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
     final body = jsonEncode({
-      "schoolIdentity": AppKeys.schoolIdentity,
+      "schoolIdentity": ApiRoutes.schoolIdentity,
       "username": username,
       "studentID": studentID,
     });
@@ -40,7 +39,7 @@ class BangDiemApi {
     const subUrl = '/SIM_Student/GetSubjectMarkOfSemester';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
     final body = jsonEncode({
-      "schoolIdentity": AppKeys.schoolIdentity,
+      "schoolIdentity": ApiRoutes.schoolIdentity,
       "username": username,
       "studentID": studentID,
     });
@@ -62,7 +61,7 @@ class BangDiemApi {
     const subUrl = '/SIM_Student/GetSubjectMarkDetail';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
     final body = jsonEncode({
-      "schoolIdentity": AppKeys.schoolIdentity,
+      "schoolIdentity": ApiRoutes.schoolIdentity,
       "username": username,
       "studentID": studentID,
     });

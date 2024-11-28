@@ -25,8 +25,9 @@ Widget TextDoiMatKhau({required bool themeFlag}) {
           ),
           vSizedBox2,
           RichText(
-              textAlign: TextAlign.justify,
-              text: TextSpan(children: [
+            textAlign: TextAlign.justify,
+            text: TextSpan(
+              children: [
                 TextSpan(
                     text:
                         "Vui lòng nhập các thông tin xác thực dưới đây để yêu cầu đặt lại mật khẩu cho tài khoản của bạn. Mật khẩu phải 8 ký tự chở lên và phải có chữ hoa, chữ thường, số và ký tự đặc biệt. ",
@@ -46,7 +47,9 @@ Widget TextDoiMatKhau({required bool themeFlag}) {
                         fontSize: 14.0,
                         fontWeight: FontWeight.w900,
                         color: AppColors.primary))
-              ])),
+              ],
+            ),
+          ),
         ],
       ),
     ),

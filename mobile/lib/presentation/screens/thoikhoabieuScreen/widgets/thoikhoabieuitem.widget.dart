@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/app/constants/app.fonts.dart';
+import 'package:mobile/core/models/schedulelist.dart';
 import 'package:mobile/presentation/widgets/custom.text.style.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
 
@@ -48,14 +49,14 @@ TextStyle stylethi() {
 
 TextStyle stylethongtin() {
   return const TextStyle(
-    fontSize: 13.0,
+    fontSize: 14.0,
     fontFamily: AppFonts.contax,
     overflow: TextOverflow.clip,
   );
 }
 
 Widget ThoiKhoaBieuItemNew(
-    {required dynamic element, required BuildContext context}) {
+    {required ScheduleList element, required BuildContext context}) {
   var rnd = Random();
   int index = rnd.nextInt(5);
   return Card(
@@ -79,12 +80,12 @@ Widget ThoiKhoaBieuItemNew(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  element["tiet"],
+                  "Tiết ${element.fromLessionTime!.toString()}-${element.toLessionTime!.toString()}",
                   style: styletiet(),
                 ),
                 CircleAvatar(
                   backgroundColor: AppColors.white,
-                  child: element["loai"] == "01"
+                  child: element.isTestSchedule == 0
                       ? Text(
                           "Học",
                           style: stylehoc(),
@@ -98,129 +99,75 @@ Widget ThoiKhoaBieuItemNew(
             ),
           ),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      icons[index],
-                      color: colors[index],
-                    ),
-                    const SizedBox(
-                      width: 5.0,
-                    ),
-                    Expanded(
-                      child: Text(
-                        element['malophocphan'] +
-                            ':' +
-                            element['tenlophocphan'],
-                        style: CustomTextWidget.bodyTextS14B(),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.menu_book,
+                        color: colors[index],
+                      ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      Expanded(
+                        child: Text(
+                          '${element.subjectID}:${element.subjectName}',
+                          style: CustomTextWidget.bodyTextS14B(),
+                        ),
+                      ),
+                    ],
+                  ),
+                  vSizedBox1,
+                  dividerH2B1w2,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.room,
+                                  color: colors[index],
+                                ),
+                                Text(
+                                  element.roomID!,
+                                  style: stylethongtin(),
+                                ),
+                              ],
+                            ),
+                          ),
+                          hSizedBox1,
+                          Expanded(
+                              child: Row(
+                            children: [
+                              Icon(
+                                Icons.person,
+                                color: colors[index],
+                              ),
+                              Text(
+                                element.teacherName!,
+                                style: stylethongtin(),
+                              ),
+                            ],
+                          ))
+                        ],
                       ),
                     ),
-                  ],
-                ),
-                vSizedBox1,
-                dividerH2B1w2,
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            element['phong'],
-                            style: stylethongtin(),
-                          ),
-                        ),
-                        hSizedBox1,
-                        Expanded(
-                          child: Text(
-                            element['giangvien'],
-                            style: stylethongtin(),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ],
-      ),
-    ),
-  );
-}
-
-Widget ThoiKhoaBieuItemold({required dynamic element}) {
-  return Card(
-    elevation: 10.0,
-    margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-    child: SizedBox(
-      height: 140.0,
-      child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              element["tiet"],
-              style: CustomTextWidget.bodyTextS14B(),
-            ),
-            element["loai"] == "01"
-                ? Text(
-                    "Lịch học",
-                    style: CustomTextWidget.bodyTextS14Cblue(),
-                  )
-                : Text(
-                    "Lịch thi",
-                    style: CustomTextWidget.bodyTextS14W6red(),
-                  )
-          ],
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                element['malophocphan'] + ':' + element['tenlophocphan'],
-                style: CustomTextWidget.bodyTextS14B(),
-              ),
-              vSizedBox1,
-              dividerH2B1w2,
-              vSizedBox1,
-              const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Phòng"),
-                  Text("Giảng viên"),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    element['phong'],
-                    style: CustomTextWidget.bodyTextS14B(),
-                  ),
-                  Text(
-                    element['giangvien'],
-                    style: CustomTextWidget.bodyTextS14B(),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
       ),
     ),
   );

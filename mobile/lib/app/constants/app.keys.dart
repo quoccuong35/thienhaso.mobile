@@ -1,14 +1,12 @@
 class AppKeys {
   static String appMode = 'darkMode';
   static String userData = 'jwt';
-
   static const String studentID = "studentID";
   static const String token = 'token';
   static const String username = 'username';
-  static const String schoolIdentity = 'cdn_lilama2';
   static String title = "Thiên Hà Số";
-  static bool noApi = true;
   static String lang = 'lang';
+  static int timeOut = 30; // dơn vị tính là giây
   static const String bg = "assets/images/bg.jpg";
   static const String logo = "assets/images/logo.png";
 }

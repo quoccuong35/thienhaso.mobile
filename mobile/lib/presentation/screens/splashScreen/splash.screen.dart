@@ -7,6 +7,7 @@ import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/app/constants/app.keys.dart';
 import 'package:mobile/app/routers/app.routes.dart';
 import 'package:mobile/core/notifiers/authentication.notifer.dart';
+import 'package:mobile/core/notifiers/notifylist.notifer.dart';
 
 import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
@@ -66,6 +67,13 @@ class _SplashScreenState extends State<SplashScreen> {
           token: token,
           context: context);
       if (result) {
+        NotifyListNotifier notify =
+            Provider.of<NotifyListNotifier>(context, listen: false);
+        await notify.getNotifyListKhoiTao(
+            context: context,
+            token: token,
+            username: username,
+            studentID: studentID);
         Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute);
       } else
         Navigator.of(context).pushReplacementNamed(AppRouter.loginRoute);

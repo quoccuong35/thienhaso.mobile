@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:mobile/app/routers/api.routes.dart';
+import 'package:mobile/core/api/api.dart';
 
 import 'package:mobile/core/api/student.api.dart';
 import 'package:mobile/core/models/studentinfo.dart';
@@ -23,8 +25,20 @@ class StudentNotifier extends ChangeNotifier {
       required String token,
       required BuildContext context}) async {
     try {
-      var reponse = await studentApi.getInfo(
-          token: token, username: username, studentID: studentID);
+      final body = jsonEncode({
+        "schoolIdentity": ApiRoutes.schoolIdentity,
+        "username": username,
+        "studentID": studentID,
+      });
+      // var reponse = await studentApi.getInfo(
+      //
+      //   token: token, username: username, studentID: studentID);
+      Api callServer = Api();
+      var reponse = await callServer.postApi(
+          subUrl: '/SIM_Student/GetInfo',
+          context: context,
+          token: token,
+          body: body);
       if (reponse['responseCode'] == 0) {
         _student = StudentInfo.fromJson(reponse['body']);
         notifyListeners();
@@ -34,11 +48,6 @@ class StudentNotifier extends ChangeNotifier {
             text: reponse['responseDesc'], context: context));
         return false;
       }
-    } on SocketException catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
-          text: 'Oops No You Need A Good Internet Connection',
-          context: context));
-      return false;
     } catch (e) {
       // ignore: avoid_print
       print(e);

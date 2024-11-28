@@ -26,4 +26,26 @@ class AppFunctions {
       return null;
     }
   }
+
+  static String customExceptionStatusCodeApi(int statusCode, String url) {
+    String kq = '';
+    switch (statusCode) {
+      case 401:
+        kq = "Chưa cáp quyền truy cập 401";
+        break;
+      case 415:
+        kq = "Yêu cầu kiểu dữ liệu không hợp lệ 415";
+        break;
+      case 404:
+        kq = "Không tìm thấy url $url trên hệ thống 404";
+        break;
+      case 400:
+        kq = "Yêu cầu không hợp lệ 400";
+        break;
+      default:
+        kq = "Lỗi hệ thống liên hệ quản trị $statusCode";
+        break;
+    }
+    return kq;
+  }
 }

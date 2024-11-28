@@ -1,6 +1,9 @@
 import 'package:mobile/core/notifiers/bangdiem.notifier.dart';
+import 'package:mobile/core/notifiers/chuongtrinhdaotao.notifer.dart';
 import 'package:mobile/core/notifiers/diemdanh.notifier.dart';
+import 'package:mobile/core/notifiers/hocphi.notifer.dart';
 import 'package:mobile/core/notifiers/lang.notifiers.dart';
+import 'package:mobile/core/notifiers/notifylist.notifer.dart';
 import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:mobile/core/notifiers/theme.notifier.dart';
 import 'package:mobile/core/notifiers/thoikhoabieu.notifier.dart';
@@ -17,5 +20,8 @@ class AppProvider {
     ChangeNotifierProvider(create: (_) => LangNotifiers()),
     ChangeNotifierProvider(create: (_) => ThoiKhoaBieuNotifier()),
     ChangeNotifierProvider(create: (_) => StudentNotifier()),
+    ChangeNotifierProvider(create: (_) => HocPhiNotifier()),
+    ChangeNotifierProvider(create: (_) => ChuongTrinhDaoTaoNotifier()),
+    ChangeNotifierProvider(create: (_) => NotifyListNotifier()),
   ];
 }
