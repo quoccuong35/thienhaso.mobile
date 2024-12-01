@@ -9,6 +9,7 @@ class AppKeys {
   static int timeOut = 30; // dơn vị tính là giây
   static const String bg = "assets/images/bg.jpg";
   static const String logo = "assets/images/logo.png";
+  static const String vietQR = "assets/images/vietQR.png";
 }
 
 // ignore: camel_case_types

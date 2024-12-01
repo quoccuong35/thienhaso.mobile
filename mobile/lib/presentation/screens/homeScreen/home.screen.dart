@@ -1,7 +1,5 @@
 // ignore_for_file: unused_local_variable
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/app/constants/app.fonts.dart';
@@ -189,7 +187,7 @@ class HomeScreen extends StatelessWidget {
                     child: Image.asset(
                       AppKeys.logo, width: 300, // Set the width
                       height: 300, // Set the height
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -214,119 +212,157 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white // Rounded corners
                           ),
                       margin: const EdgeInsets.all(10.0),
-                      child: ListView.builder(
-                          itemCount: listDacbiet.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            final item = listDacbiet[index];
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed(item.routername);
-                              },
-                              child: Container(
-                                height: 80.0,
-                                width: 150.0,
-                                margin: const EdgeInsets.all(5.0),
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      item.color,
-                                      item.color.withOpacity(0.9),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      offset: const Offset(5, 5),
-                                      blurRadius: 10.0,
-                                    ),
-                                    BoxShadow(
-                                      color: Colors.white.withOpacity(0.5),
-                                      offset: const Offset(-5, -5),
-                                      blurRadius: 10.0,
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      width: 60,
-                                      height: 60,
-                                      child: Icon(
-                                        item.iconData,
-                                        size: 40,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        item.title,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CustomItemButton.customItemButtonHeader(
+                              color: const Color.fromARGB(255, 86, 87, 53),
+                              title: "Thời khóa biểu",
+                              context: context,
+                              routername: "/thoiKhoaBieu",
+                              icons: Icons.calendar_month),
+                          CustomItemButton.customItemButtonHeader(
+                              color: const Color.fromRGBO(0, 98, 102, 1),
+                              title: "Bảng điểm",
+                              context: context,
+                              routername: "/bangDiem",
+                              icons: Icons.featured_play_list_outlined)
+                        ],
+                      ),
                     ),
                   ),
-                  //vSizedBox1,
-                  // Padding(
-                  //   padding: const EdgeInsets.only(left: 10),
-                  //   child: Text(
-                  //     "Danh sách tính năng",
-                  //     style: CustomTextWidget.bodyTextB3(color: Colors.black87),
-                  //   ),
-                  // ),
+
                   Container(
                     height: 20,
                     color: AppColors.creamColor,
                   ),
                   Container(
-                    height: (MediaQuery.of(context).size.height - 200),
+                    height: (MediaQuery.of(context).size.height * 0.6),
                     margin: const EdgeInsets.symmetric(vertical: 2.0),
                     padding: const EdgeInsets.all(10.0),
                     decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
-                    child: GridView.builder(
-                      primary: false,
-                      padding: const EdgeInsets.all(4),
-                      itemCount: listMenu1.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: max(currentCount, minCount)),
-                      itemBuilder: ((context, index) {
-                        final item = listMenu1[index];
-                        return item.routername == "/thongBao" && counter > 0
-                            ? CustomItemButton.customItemButtonThongBao(
-                                onTap: () {
-                                  showDiemDanh(item.routername);
-                                },
-                                title: item.title,
-                                icons: item.iconData,
-                                color: item.color,
-                                soLuong: counter)
-                            : CustomItemButton.customItemButton(
-                                onTap: () {
-                                  showDiemDanh(item.routername);
-                                },
-                                title: item.title,
-                                icons: item.iconData,
-                                color: item.color,
-                              );
-                      }),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Đào tạo",
+                            style: CustomTextWidget.bodyTextB3(
+                                color: Colors.black87),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("/chuongTrinhDaoTao");
+                                  },
+                                  title: "Chương trình",
+                                  icons: Icons.list_alt_sharp,
+                                  color: Colors.blueGrey),
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("");
+                                  },
+                                  title: "Đăng Ký",
+                                  icons: Icons.local_library_sharp,
+                                  color:
+                                      const Color.fromARGB(255, 179, 57, 57)),
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("/hocPhi");
+                                  },
+                                  title: "Học phí",
+                                  icons: Icons.monetization_on,
+                                  color: const Color.fromARGB(255, 36, 14, 21))
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Quá trình học",
+                            style: CustomTextWidget.bodyTextB3(
+                                color: Colors.black87),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("/diemDanh");
+                                  },
+                                  title: "Điểm danh",
+                                  icons: Icons.check_circle,
+                                  color: Colors.lightGreen),
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("");
+                                  },
+                                  title: "Rèn luyện",
+                                  icons: Icons.medical_information,
+                                  color:
+                                      const Color.fromRGBO(111, 30, 81, 1.0)),
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("");
+                                  },
+                                  title: "khảo sát",
+                                  icons: Icons.swap_vert_sharp,
+                                  color: const Color.fromRGBO(189, 197, 129, 1))
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Thông tin khác",
+                            style: CustomTextWidget.bodyTextB3(
+                                color: Colors.black87),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomItemButton.customItemButtonThongBao(
+                                  onTap: () {
+                                    showDiemDanh("/thongBao");
+                                  },
+                                  title: "Thông báo",
+                                  icons: Icons.info_rounded,
+                                  color: Colors.blue,
+                                  soLuong: counter),
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("");
+                                  },
+                                  title: "Tin tức",
+                                  icons: Icons.newspaper,
+                                  color: const Color.fromRGBO(0, 98, 102, 1)),
+                              CustomItemButton.customItemButton(
+                                  onTap: () {
+                                    showDiemDanh("");
+                                  },
+                                  title: "Mẫu đơn",
+                                  icons: Icons.document_scanner_outlined,
+                                  color: const Color.fromRGBO(88, 177, 159, 1))
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   Container(

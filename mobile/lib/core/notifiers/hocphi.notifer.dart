@@ -10,6 +10,12 @@ import 'package:mobile/core/utils/snackbar.util.dart';
 
 class HocPhiNotifier with ChangeNotifier {
   Api api = Api();
+  late bool conNo = false;
+  late var data;
+  late var serached_data;
+  onChangedLichHoc(bool value) {
+    conNo = value;
+  }
 
   Future getKhoanThu({required BuildContext context}) async {
     // bảng điểm toàn khóa

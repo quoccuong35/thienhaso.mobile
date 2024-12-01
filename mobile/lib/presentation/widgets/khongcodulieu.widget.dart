@@ -12,11 +12,10 @@ class CustomDataEntyWidget {
             opacity: 0.1, // Adjust the opacity for the watermark effect
             child: Container(
               alignment: Alignment.center,
-              child: Image.asset(
-                AppKeys.logo, width: 300, // Set the width
-                height: 300, // Set the height
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset(AppKeys.logo,
+                  width: 300, // Set the width
+                  height: 300, // Set the height
+                  fit: BoxFit.contain),
             ),
           ),
         ),

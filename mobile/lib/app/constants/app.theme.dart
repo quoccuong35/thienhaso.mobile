@@ -10,6 +10,7 @@ final darkTheme = ThemeData(
     primary: AppColors.mirage,
   ),
   indicatorColor: AppColors.rawSienna,
+  scaffoldBackgroundColor: AppColors.creamColor,
   dividerColor: Colors.white54,
   fontFamily: AppFonts.lato,
 );
@@ -23,4 +24,4 @@ final lightTheme = ThemeData(
     indicatorColor: AppColors.rawSienna,
     dividerColor: Colors.black,
     fontFamily: AppFonts.lato,
-    scaffoldBackgroundColor: AppColors.white);
+    scaffoldBackgroundColor: AppColors.creamColor);

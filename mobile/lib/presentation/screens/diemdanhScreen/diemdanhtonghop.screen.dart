@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/core/models/classsubject.dart';
 import 'package:mobile/core/notifiers/diemdanh.notifier.dart';
 import 'package:mobile/presentation/screens/diemdanhScreen/widgets/diemdanhtonghop.widget.dart';
@@ -19,6 +20,7 @@ class DiemDanhTongHopScreen extends StatelessWidget {
         top: false,
         child: Scaffold(
           appBar: CustomAppbar("Điểm danh tổng hợp", context),
+          backgroundColor: AppColors.creamColor,
           body: Consumer<DiemDanhNotifier>(builder: (context, diemdanh, _) {
             return FutureBuilder(
                 future: diemdanh.classSubjectList(context: context),

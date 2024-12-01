@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/app/constants/app.colors.dart';
 import 'package:mobile/core/notifiers/student.notifer.dart';
 import 'package:mobile/presentation/screens/hocphi/widgets/cackhoanthu.widget.dart';
+import 'package:mobile/presentation/screens/hocphi/widgets/canthanhtoan.widget.dart';
 import 'package:mobile/presentation/screens/hocphi/widgets/lichsuthu.widget.dart';
 import 'package:mobile/presentation/widgets/custom.appbar.dart';
 import 'package:mobile/presentation/widgets/dimensions.widget.dart';
@@ -20,7 +21,7 @@ class HocPhiScreen extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppbar("Học phí", context),
         body: DefaultTabController(
-          length: 2,
+          length: 3,
           child: Column(
             children: [
               Material(
@@ -41,10 +42,19 @@ class HocPhiScreen extends StatelessWidget {
                     tabs: [
                       Tab(
                         child: SizedBox(
-                          width: width * 0.5,
+                          width: width * 0.3,
                           height: 35,
                           child: const Center(
-                            child: Text("Các khoản thu"),
+                            child: Text("khoản thu"),
+                          ),
+                        ),
+                      ),
+                      Tab(
+                        child: SizedBox(
+                          width: width * 0.3,
+                          height: 35,
+                          child: const Center(
+                            child: Text("Cần đóng"),
                           ),
                         ),
                       ),
@@ -53,7 +63,7 @@ class HocPhiScreen extends StatelessWidget {
                           height: 35,
                           width: width * 0.4,
                           child: const Center(
-                            child: Text("Lịch sử đóng tiền"),
+                            child: Text("Lịch sử đóng"),
                           ),
                         ),
                       ),
@@ -61,10 +71,10 @@ class HocPhiScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              dividerH2B,
+              vSizedBox1,
               const Expanded(
                 child: TabBarView(
-                  children: [CacKhoanThu(), LichThuThu()],
+                  children: [CacKhoanThu(), CanThanhToan(), LichThuThu()],
                 ),
               )
             ],

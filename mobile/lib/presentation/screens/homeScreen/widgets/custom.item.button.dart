@@ -109,29 +109,31 @@ class CustomItemButton {
                   ),
                   alignment: Alignment.center,
                 ),
-                Positioned(
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 18,
-                      minHeight: 18,
-                    ),
-                    child: Center(
-                      child: Text(
-                        soLuong.toString(), // Badge number
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
+                soLuong > 0
+                    ? Positioned(
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          constraints: const BoxConstraints(
+                            minWidth: 18,
+                            minHeight: 18,
+                          ),
+                          child: Center(
+                            child: Text(
+                              soLuong.toString(), // Badge number
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                )
+                      )
+                    : const Text("")
               ],
             ),
             Expanded(
@@ -150,58 +152,68 @@ class CustomItemButton {
   }
 
   static customItemButtonHeader(
-      {VoidCallback? onTap,
+      {required String routername,
+      required BuildContext context,
       required String title,
       required IconData icons,
       required Color color}) {
-    return InkWell(
-      onTap: onTap!,
-      child: SizedBox(
-        width: 90.0,
-        height: 90.0,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const SizedBox(
-                height: 5.0,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(routername);
+      },
+      child: Container(
+        height: 80.0,
+        width: MediaQuery.of(context).size.width * 0.4,
+        margin: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              color,
+              color.withOpacity(0.9),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              offset: const Offset(5, 5),
+              blurRadius: 10.0,
+            ),
+            BoxShadow(
+              color: Colors.white.withOpacity(0.5),
+              offset: const Offset(-5, -5),
+              blurRadius: 10.0,
+            ),
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 60,
+              height: 60,
+              child: Icon(
+                icons,
+                size: 40,
               ),
-              Container(
-                width: 45,
-                height: 45,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(
-                    10,
-                  ),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black45, // Shadow color
-                      offset: Offset(0, 10), // Shadow position
-                      blurRadius: 10.0, // Shadow blur radius
-                      spreadRadius: 2.0, // Shadow spread radius
-                    ),
-                  ],
-                ),
-                // ignore: sort_child_properties_last
-                child: Icon(
-                  icons,
-                  size: 30,
+            ),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
                   color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
-                alignment: Alignment.center,
+                textAlign: TextAlign.left,
               ),
-              Expanded(
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 3),
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: CustomTextWidget.bodyTextS14W6(),
-                    )),
-              )
-            ]),
+            )
+          ],
+        ),
       ),
     );
   }
